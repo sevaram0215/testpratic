@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <nav>
+      <div class="nav_image">
+        <img
+          src="https://digitalsynopsis.com/wp-content/uploads/2023/04/best-logos-of-all-time-bmw.jpg"
+          alt=""
+        />
+      </div>
+      <div>
+        <h1>Welcome To My World</h1>
+      </div>
+      <div class="ul_div">
+        <ul>
+          <li>About</li>
+          <li>Service</li>
+          <li>contact</li>
+          <li>about</li>
+        </ul>
+      </div>
+    </nav>
+    <div class="Image_contanier">
+      <img
+        src="https://c4.wallpaperflare.com/wallpaper/73/279/750/cute-baby-girl-portrait-blonde-black-background-girl-s-black-knit-sweater-wallpaper-preview.jpg"
+        alt=""
+      />
+    </div>
+    <div class="form_table">
+      <div class="form_div">
+        <form  id="form">
+          <label for="" >Name:-</label><br>
+          <input type="text" id="name" placeholder="enter your name "><br>
+          <label for="" >Father Name:-</label><br>
+          <input type="text" id="father_name" placeholder="enter your father name "><br>
+          <div> <button id="btn">Submit</button>
+            <button>Restart</button>
+           </div>
+         
+          
+        </form>
+      </div>
+      
+      <div id="Display_table"></div>
+
+    </div>
+    <div id="footer">
+      <div>
+        <ul>
+          <li>about</li>
+          <li>about</li>
+          <li>about</li>
+          <li>about</li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li>about</li>
+          <li>about</li>
+          <li>about</li>
+          <li>about</li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li>about</li>
+          <li>about</li>
+          <li>about</li>
+          <li>about</li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li>about</li>
+          <li>about</li>
+          <li>about</li>
+          <li>about</li>
+        </ul>
+      </div>
+     
+      
+
+    </div>
+  </body>
+  <script>
+    let form= document.getElementById("form")
+    let arr=JSON.parse(localStorage.getItem("user"))||[]
+    let btn=document.getElementById("btn")
+    btn.addEventListener("click",submit);
+    function submit(element){
+      element.preventDefault();
+      let obj={
+         name:document.getElementById("name").value,
+         father:document.getElementById("father_name").value
+      };
+      arr.push(obj);
+      localStorage.setItem("user",JSON.stringify(arr));
+      display_data(arr)
+      // console.log(arr)
+      alert("Thanks for submit")
+       form.reset()
+    }
+
+    function display_data(data){
+      let Display_table=document.getElementById("Display_table")
+      let table=document.createElement("table")
+      let thead=document.createElement("thead")
+      let tbody=document.createElement("tbody")
+      let tr=document.createElement("tr")
+      
+      let th1=document.createElement("th")
+      th1.innerText="Name"
+      let th2=document.createElement("th")
+      th2.innerText="Father Name"
+      tr.append(th1,th2)
+      thead.append(tr)
+      Display_table.innerHTML=null;
+      data.forEach(element => {
+        let tr1=document.createElement("tr")
+        let td1=document.createElement("td")
+        td1.innerText=element.name
+        let td2=document.createElement("td")
+        td2.innerText=element.father
+        tr1.append(td1,td2)
+        tbody.append(tr1);
+        table.append(tbody,thead);
+        Display_table.append(table);
+      });
+    }
+    display_data(arr)
+  </script>
+</html>
